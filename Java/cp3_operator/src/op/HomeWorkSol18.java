@@ -5,30 +5,18 @@ package op;
  */
 class HomeWorkSol18 {
 	public static void main(String[] args) {
-		int num1 = 0;
-		int num2 = 2;
+		int num1 = 89;
+		int num2 = 99;
 		int num3 = -3;
 		int max = 0;
-
-		if (num1 - num2 >= 0) {
-			max = num1;
-			if (max >= num3) {
-
-				System.out.println(max + "(이)가 가장 큰 수입니다.");
-			} else {
-				System.out.println(num3 + "(이)가 가장 큰 수 입니다.");
-			}
-
-		} else if (num1 <= num2) {
+		max = num1;
+		if (num1 < num2) {
 			max = num2;
-			if (max >= num3) {
-				System.out.println(max + "(이)가 가장 큰 수 입니다.");
-			} else {
-				System.out.println(num3 + "(이)가 가장 큰 수 입니다.");
-			}
 		}
-		
-
+		if (max < num3) {
+			max = num3;
+		}
+		System.out.println("1: "+num1+ "\t 2:"+num2+ "\t 3:" +num3+"\t가장 큰 수 :"+max);
 	}
 
 }
