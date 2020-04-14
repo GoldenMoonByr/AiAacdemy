@@ -1,11 +1,13 @@
 package Ex;
-// 1+(1+2)+(1+2+3)+(1+2+3+4)+...+(1+2+3+...+10)ÀÇ °á°ú¸¦ °è»êÇÏ½Ã¿À.
-//¹Ì¿Ï
+
+//[3] 1+(1+2)+(1+2+3)+(1+2+3+4)+...+(1+2+3+...+10)ì˜ ê²°ê³¼ë¥¼ ê³„ì‚°í•˜ì‹œì˜¤.
 public class Ex18 {
 	public static void main(String[] args) {
-		int a=0, sum=0;
-				for(int i=1;i<10;i++) {
-	
-	
+		int a = 0, sum = 0, total = 0;
+		for (int i = 1; i <= 10; i++) {
+			sum = sum + i;
+			total = total + sum;
+		}
+		System.out.println(total);
 	}
-
+}
