@@ -16,5 +16,4 @@ public class FruitSeller {
 		income = income + money;
 		return num;
 	}
-
 }
