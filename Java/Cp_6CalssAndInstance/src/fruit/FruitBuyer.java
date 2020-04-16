@@ -22,7 +22,7 @@ public class FruitBuyer {
 	//참조변수 : 해당 타입의 주소값을 정의하는 변수
 	void buyApple(FruitSeller seller, int money) {
 		
-		
+	
 		int num = seller.saleApple(money);
 		numOfApple+=num;
 		myMoney-=money;
