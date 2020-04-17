@@ -1,0 +1,86 @@
+클래스 
+
+변수	밑변 , 높이
+
+메서드	밑변 , 높이 변경 메서드
+	삼각형 넓이 반환 메서드
+	밑변*높이 / 2
+
+
+
+
+구슬치기
+어린이 VS 어린이
+어린아이가 소유하고 있는 구슬의 개수 정보
+
+철수와 영희는 구슬치기를 합니다.
+철수는 구슬 10개를 가지고 있고,
+영희는 구슬을 20개 가지고 있다.
+철수와 영희는 구슬 게임을 통해 구슬을 서로 주고받는다.
+
+
+객체 : 영희 , 철수 , 구슬
+속성(상태값) : 구슬의 개수
+기능 : 게임, 구슬을 주고 받고.
+
+
+
+concat
+
+String str1 = "String"
+String str2 = "String"
+String str3 = new String str1
+
+str1과 str2는 같은 주소의 인스턴스 값
+str1과 str3은 같은 결과의 문자열 이지만 다른 주소의 인스턴스 값을 가진다.
+
+
+StringBuilder는 문자열의 저장 및 변경을 위한 메모리 공간을 지니는 클래스
+문자열 데이터의 추가를 위한 append 와 삽입을 위한 insert 메소드 제공.
+
+String + String = 새로운 String
+
+builder , buffer 사용시 새로운 String이 아닌 하나의 공간에서 계속 추가 되는 방식을 사용
+builder 큰 메모리 공간 하나에 문자열을 순서대로 쭉쭉 늘려가는 방식임.
+
+
+StringBuilder strBuf = new StringBuilder("AB");  =>buf :AB
+strBuf.append(25); buf :AB25
+strBuf.append('Y').append(true); buf :AB25Ytrue
+
+
+strBuf.insert(2,flase);   =>buf : ABfalse25Ytrue
+strBuf.insert(strBuf.length() , 'Z'); buf=> ABfalse25ytrueZ
+
+*배열,문자열의 인덱스 번호는 0번이 시작이다!!*
+*strBuf.length()와의 차이점 꼭 알기!*
+
+this의 반환은 인스턴스 자신의 참조 값 반환을 의미
+그리고 이렇게 반환 된 값을 계속해서 호출(체이닝)
+
+
+
+builder에서는 추가되는 데이터 크기에 따라서 자동으로 크기가 확장됨.
+그치만 확장되는 과정에서 시간이 어느정도 소요되므로 기본적으로 얼마나의 공간을
+차지 할 것인지 미리 정해주는 것이 좋다. 그러한 기능은 생성자를 통해서 공간 지정이 가능하다.
+public StringBuilder()
+public StringBuilder(int capacity)
+public StringBuilder(String str)
+사용예)
+socket 통신.
+정해진 숫자 범위의 정보(회원 정보 등)를 데이터화 해서 그만큼 이상의 정보는 보내질 수 없으며 그만큼의 정보만 딱
+입력 되어서 보내질 수 있게 제한시켜 줄 수 있음.
+
+문자열의 복잡한 조합의 과정에서는 StringBuilder의 인스턴스가 활용된다.
+
+StringBuffer 클래스의 공통점 세 가지
+-메소드의 수(생성자 포함)
+-메소드의 기능
+-메소드의 이름과 매개변수형
+
+차이점
+-StringBuffer는 쓰레드에 안전, StringBuilder는 쓰레드에 불안전하다.
+(StringBuffer는 순차적으로 처리)
+
+java.lang API 확인 방법*
+https://docs.oracle.com/javase/8/docs/api/index.html
