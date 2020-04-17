@@ -7,8 +7,9 @@ public class AccessWayMain {
 		System.out.println(AccessWay.num);
 		AccessWay.num++;
 		System.out.println(AccessWay.num);
-		;;
 		
+		System.out.println(AccessWay.num2);
+
 	}
 
 }

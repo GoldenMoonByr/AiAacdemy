@@ -6,9 +6,28 @@ public class FruitBuyer {
 	
 	//		사과의 개수
 	
-	int myMoney = 10000;
+//	int myMoney = 10000;
+//	int numOfApple = 0;
+
 	
-	int numOfApple = 0;
+//	작성자 : 이민수 
+//	수정일 : 2020.04-17
+//	수정내용 : 생성자로 변수 초기화
+	
+	 //변수의 명시적 초기화 변경
+	int myMoney;
+	int numOfApple;
+	
+	//생성자
+	FruitBuyer(){
+		myMoney = 5000;
+		numOfApple = 0;
+	}
+	
+	FruitBuyer(int money , int num){
+		myMoney=money;
+		numOfApple=num;
+	}
 	
 	// 구매 기능 : 메소드
 	//		1. 셀러 찾기 , 셀러 받기.
@@ -22,7 +41,6 @@ public class FruitBuyer {
 	//참조변수 : 해당 타입의 주소값을 정의하는 변수
 	void buyApple(FruitSeller seller, int money) {
 		
-	
 		int num = seller.saleApple(money);
 		numOfApple+=num;
 		myMoney-=money;
