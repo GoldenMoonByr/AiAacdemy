@@ -1,4 +1,4 @@
-package Ex;
+package ex;
 
 public class Number {
 

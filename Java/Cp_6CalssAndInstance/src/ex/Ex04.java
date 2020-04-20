@@ -1,4 +1,4 @@
-package Ex;
+package ex;
 
 /*전달되는 값이 소수(prime number)인지 아닌지를 판단하여, 
 소수인경우 true를, 소수가 아닌 경우 false를 반환하는
