@@ -7,24 +7,18 @@ public class HomeWork2 {
 
 	public static void main(String[] args) {
 
-		String str1 = "990929-1010123";
-		String str2 = "";
-		String str3 = "";
-		String str4 = "";
+		String str = "990929-1010123";
 
-		for (int i = 0; i < (str1.length() / 2) - 1; i++) {
-			str2 = str2 + str1.charAt(i);
-			System.out.println(str2);
-		}
+//	1. replace 사용
+//		System.out.println(str.replace("-", ""));
 
-		for (int i = str1.length() / 2; i < str1.length(); i++) {
-			str3 = str3 + str1.charAt(i);
-			System.out.println(str3);
-		}
+// 2. split 사용
+//		String[] str1 = str.split("-");
+//		System.out.println(str1[0] + str1[1]);
 
-		for (int i = 0; i <str3.length(); i++) {
-			str4 = str4 + str2.charAt(i) + str3.charAt(i);
-		}
-		System.out.println(str4);
+// 3. substring 사용
+		System.out.println(str.substring(0, 6) + str.substring(7));
+
 	}
+
 }
