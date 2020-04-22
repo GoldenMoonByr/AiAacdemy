@@ -1,0 +1,208 @@
+메서드 : 기능 정의
+[1.데이터를 받아서 2.연산 , 처리 후 3. 결과를 반환
+반환타입 이름(매개변수){ ... return 반환값; }
+
+
+반환형 : 기본형8개 , 참조형 , void
+이름 : 숫자 안 된다, 소문자 시작한다, 특수문자는 _,@만 가능하다
+return : 메서드의 종료를 알림.
+
+1.내가 무엇을 반환해야 하는지 2.내가 무엇을 입력받아 어떤 연산과 처리를 수행하며 3.어떤 결과값을 반환할지.
+
+자바 메서드 문제1.
+	두 개의 정수를 전달받아서.(매개변수) 두수의 사칙연산(처리,연산) 결과를 출력하는(출력하는 것이며 반환하는 것은 아님.=> void) 하는 메서드와
+이 메서드를 호출하는 main메서드를 정의해보자. 단, 나눗셈은 몫과 나머지를 각각 출력해야 한다.
+
+(1)메서드를 만들어보자.
+	static void calc(int a , int b){
+
+	int add = a+b;
+	int min = a-b;
+	.....
+
+
+	System.out.println("..."+add);
+	....
+
+(2) 호출하는 main 메서드 생성.
+
+
+
+2.두 개의 정수를 받아서 (매개변수), 두 수의 절대값을 계산하여(연산, 처리) 출력하는 메서드(반환이 아닌 void)와
+이 메서드를 호출하는 main메서드를 정의해 보자. 단 메서드 호출 싱 전달되는 값의 순서에 상관없이
+절대값이 계산되어서 출력되어야 한다.
+
+
+(1)메서드를 만들어보자.
+static void abs(int a, int b){
+	System.out.println(a>=0?a:-a);
+	System.out.println(b>=0?b:-b);
+
+}
+
+(2) 호출하는 main 메서드 생성.
+
+3.원의 반지름 정보를 전달하면(매개변수), 원의 넓이를 계산(처리,연산)해서 반환(결과값 반환! float or double)하는 
+메서드와 원의 둘레를 계산해서 반환하는메서드를 각각 정의하고, 
+이를 호출하는 main 메서드를 정의하자.
+
+(1)메서드를 정의해보자.
+	static float round(float a) {
+	
+	final float PI = 3.14f;		//Math.PI
+	
+	float round= 2*PI*a;
+	
+	return round;
+
+	}
+
+	static float area(float a) {
+
+	float area = PI * (float)Math.pow(a,2);       //Math.pow(a,2)=> a^2
+	
+	return round;
+	}
+	
+
+
+4. 전달되는 값이 (매개변수) 소수(prime number)인지 아닌지를 판단하여(연산 , 처리), 
+소수인 경우 true, 소수가 아닌 경우 flase를(반환 값은 boolean)
+반환하는 메서들을 정의하고, 이를 이용해서 1이상 100이하 소수를 전부 출력 할 수
+있도록 main 메서드를 정의하자.
+
+(1)메서드를 정의해보자.
+	static boolean prime(int a){
+
+	boolean result = true;
+	if(a<=1) {
+	result = false;
+	}
+
+	for(int i= a-1; i>1 ; i--){
+	if(a%i==0){
+
+	result = false;
+	break;
+
+	}
+
+	}
+	return result;
+	}
+
+
+
+
+String 문제
+1. String str = "A~N"
+역순으로 출력하시오.
+
+	str.charAt(index)를 이용.
+	
+	public static void main(String[] args){
+
+
+	String str = "A~N";
+	int nymOfStr = str.length()
+
+	for( int = numOfstr -1; i>=0 ; i-- ){
+	char a = str.charAt(i);
+	....
+	}
+
+
+	StringBuffer를 이용
+	StrintBuffer strB = new StringBuffer("A~N");
+	System.out.println(strB.reverse());
+
+
+
+
+
+2.주민번호 중간에 '-'문자를 빼주세요.
+
+
+
+
+(1) String Buffer 사용1
+	StringBuffer str = new StringBuffer("990929-1010123");
+	System.out.println(str.deleteCharAt(str.indexOf("-"));
+	
+버퍼는 내부에 저장된 데이터를 수정한다는 것이고,
+String 같은 경우 내부의 저장된 데이터를 저장하지 않는다는 의미
+
+
+(2) String Class 사용 -replace
+	String str2= "990929-1010123"
+	System.out.println
+	replace => old , new => "문자", "문자" => "문자열" , "문자열" 
+
+(3) Unicode 사용
+
+	String assemble ="";
+	//unicode 반환
+	for(int i = 0 ; i<str2.length() ; i++){
+
+	int uniNum = str2.codePointAt(i);
+
+	if(uniNum>='0' && uniNum <='9') {
+
+	assemble += str2.charAt(i);
+
+	}
+	
+	...
+
+
+	}
+
+
+배열문제
+
+
+문제1. 최대값 , 최소값 반환하기
+
+	기준값을 최소값, 최대값으로 가정, 나머지 요소들의 크기를 기준값과 비교하여
+	최소값, 최대값을 업데이트 해줌.
+
+	*매개변수로 배열을 받을 수 있다.(배열 인스턴스를 가르키는 주소값을 받을 수 있다.)
+
+
+
+문제2. 2차원 배열
+
+	2차원 배열 => 1차원 배열을 가지고 있는 배열
+
+	각 배열의 칸에 1차원 배열을 가지고 있다고 생각하면 됩니다.
+	
+	세로(행)의 사이즈  : arr.length
+	
+	가로(행)의 사이즈 : arr[i].length
+	
+
+
+
+전화번호부
+Version 0.1 전화번호 관리 프로그램. 
+
+PhoneInfor 라는 이름의 클래스 (아! 내가 변수(스코프 고민해보자), 메서드(기능들과 어떤 관계들), 생성자)를 정의해 보자.
+클래스는 다음의 데이터들의 문자열 형태로 저장이 가능 해야 하며,
+ 저장된 데이터의 적절한 출력이 가능하도록 메소드 정의
+
+? 이름            name              String
+? 전화번호       phoneNumber     String
+? 생년월일       birthday            String 
+
+단, 생년월일 정보는 저장할 수도 있고, 저장 않을 수도 있게끔 생성자 생성.
+
+
+
+phonebookManager
+1.사용자에게 입력 받는다
+2. 인스턴스 생성
+3. 출력
+
+
+
+
