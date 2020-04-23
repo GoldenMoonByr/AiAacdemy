@@ -22,14 +22,14 @@ public class PhoneBookMain {
 //			System.out.println("===================");
 
 			int selectNum = sc.nextInt();
-			
+
 			sc.nextLine();
-			
+
 			switch (selectNum) {
 			case 1:
 				info = manager.createInstance();
 				manager.addInfo(info);
-				//manager.addInfo();
+				// manager.addInfo();
 				break;
 			case 2:
 				manager.searchInfo();
