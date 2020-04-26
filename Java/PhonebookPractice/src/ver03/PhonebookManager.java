@@ -43,6 +43,11 @@ public class PhonebookManager {
 		}
 	}
 	
+	int searchIndexNumber(String name) {
+		if()
+		
+	}
+	
 
 	
 	PhoneInfor makeInstance() {

@@ -12,7 +12,6 @@ package ver03;
 
 데이터 삭제 후 남아있는 데이터 처리는 데이터를 빈 공란이 없이 순차적으로
 재정리 2번이 삭제되었다면 3번 이후 데이터들의 주소 값이 -1 처리되어 재저장.*/
- 
 
 public class PhoneInfor {
 	String name;
@@ -36,5 +35,11 @@ public class PhoneInfor {
 		System.out.println("이 름 :" + this.name);
 		System.out.println("번 호 :" + this.phoneNumber);
 		System.out.println("생년월일 :" + this.birthday);
+	}
+
+	int savedNameCheckIndex(String name) {
+		if (name.equals(this.name)) {
+			
+		}
 	}
 }
