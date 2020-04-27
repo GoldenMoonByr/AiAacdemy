@@ -14,8 +14,8 @@ package friend;
  		대학친구 => 친구 , 고교친구 => 친구
  		즉 친구를 상위클래스로.
  */
-
-public class Friend {
+//추상클래스이므로 abstract 붙여준다.
+public abstract class Friend {
 	String name;//친구의 이름
 	String PhoneNum; //친구의 전화번호
 	String addr;//친구의 주소
@@ -27,17 +27,21 @@ public class Friend {
 		this.PhoneNum=PhoneNum;
 		this.addr = addr; 
 	}
+
+	
 	
 	void showBasicInfo() {
 		System.out.println("이 름 : "+this.name);
 		System.out.println("전화번호 : "+this.PhoneNum);
 		System.out.println("주소 : "+this.addr);
-		
 	}
 	
+		
 	//상속의 목적으로 오버라이딩 할 메서드.
 	//기본 데이터와 하위클래스의 데이터를 출력하도록 오버라이딩.
-	void showData() {}
+//	void showData() {}
 
+	//추상 메서드 생성
+	abstract void showData();
 	
 }

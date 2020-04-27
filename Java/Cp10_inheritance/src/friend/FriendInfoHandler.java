@@ -30,6 +30,8 @@ public class FriendInfoHandler {
 		myFriends[numOfFriend++] = f;
 		// numOfFriend++;
 	}
+	
+
 
 	// 2. 사용자에게 데이터를 받아 사용자 요청에 맞는 인스턴스를 생성
 	// HighFriend / UnivFriend

@@ -37,7 +37,7 @@ public class PhoneInfor {
 		System.out.println("생년월일 :" + this.birthday);
 	}
 
-	int savedNameCheckIndex(String name) {
+	boolean savedNameCheckIndex(String name) {
 		if (name.equals(this.name)) {
 			
 		}
