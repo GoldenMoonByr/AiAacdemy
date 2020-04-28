@@ -49,9 +49,11 @@ public class PhoneBookManager {
 //		sc.hasNextLine();
 
 		// 사용자 선택 번호
+		//String 형 입력 문자를 Int형으로 변경해주는 기능.
 		int select = Integer.parseInt(sc.nextLine());
 
-		if (!(select > 0 && select < 5)) {
+		
+		if (select <= 0 || select >= 5) {
 			System.out.println("정상적인 메뉴 선택이 아닙니다. \n 메뉴를 다시 선택해주세요.");
 			return;
 		}
@@ -66,6 +68,9 @@ public class PhoneBookManager {
 		System.out.println("이메일을 입력해주세요 : ");
 		String email = sc.nextLine();
 
+		
+		
+		
 		PhoneInfor infor = null;
 		switch (select) {
 		// 2,2,2 기본 클래스로 인스턴스 생성
@@ -114,10 +119,10 @@ public class PhoneBookManager {
 
 		// for each 반복문 : 현재 이 프로그램에서는 사용 불가
 		// for 반복문 : 반복의 횟수를 직접 지정가능 , numOfInfo
-		System.out.println("==========전체 정보============");
+		System.out.println("============전체 정보=============");
 		for (int i = 0; i < numOfInfor; i++) {
 			inforsBook[i].showAllData();
-			System.out.println("============================");
+			System.out.println("==================================");
 
 		}
 
@@ -150,9 +155,9 @@ public class PhoneBookManager {
 		if (index < 0) {
 			System.out.println("검색하신 이름의 정보가 없습니다.");
 		} else {
-			System.out.println("============================");
+			System.out.println("==================================");
 			inforsBook[index].showBasicInfo();
-			System.out.println("============================");
+			System.out.println("==================================");
 		}
 
 	}
