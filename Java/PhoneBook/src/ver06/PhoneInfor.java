@@ -1,6 +1,6 @@
-package ver04;
+package ver06;
 
-public class PhoneInfor {
+public class PhoneInfor implements showAllInfo {
 
 	private String name;// 저장하고자 하는 친구의 이름
 	private String phoneNumber;// 저장하고자 하는 친구의 전화번호
@@ -28,7 +28,7 @@ public class PhoneInfor {
 	}
 
 	// 전체 정보 출력
-	void showAllData() {
+	public void showAllData() {
 		showBasicInfo();
 		// 상속 후 오버라이딩을 통해 재구성
 	}

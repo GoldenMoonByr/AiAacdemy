@@ -1,43 +1,29 @@
 package scm;
 
 public class NoneInstance {
-	
 
 
-	public static void main(String[] args) {
-		Box box1 = new Box();
-		Box box2 = new PaperBox();
-		Box box3 = new GoldPaperBox();
-		
-		wrapBox(box1);
-		wrapBox(box2);
-		wrapBox(box3);
-	}
-	
-}
 
-class Box {
-	public void simpleWrap() {
+
+static class Box {
+	public void wrapBox() {
 		System.out.println("simple wrap");
 	}
 }
 
-class PaperBox extends Box {
-	public void paperWrap() {
+static class PaperBox extends Box {
+	public void wrapBox() {
 		System.out.println("paper wrap");
 	}
 }
 
-class GoldPaperBox extends PaperBox {
-	public void goldWrap() {
+static class GoldPaperBox extends PaperBox {
+	public void wrapBox() {
 		System.out.println("gold wrap");
 	}
 
 }
-
-	
-
-	Public static void wrapBox(Boxbox)
-{
-box.wrap();
+	public static void wrapBox(Box box) {
+		box.wrapBox();
+	}
 }

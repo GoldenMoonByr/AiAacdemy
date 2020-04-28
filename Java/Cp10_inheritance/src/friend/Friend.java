@@ -15,7 +15,8 @@ package friend;
  		즉 친구를 상위클래스로.
  */
 //추상클래스이므로 abstract 붙여준다.
-public abstract class Friend {
+public abstract class Friend implements Info{
+	
 	String name;//친구의 이름
 	String PhoneNum; //친구의 전화번호
 	String addr;//친구의 주소
@@ -39,9 +40,9 @@ public abstract class Friend {
 		
 	//상속의 목적으로 오버라이딩 할 메서드.
 	//기본 데이터와 하위클래스의 데이터를 출력하도록 오버라이딩.
-//	void showData() {}
+public void showData() { showBasicInfo();}
 
 	//추상 메서드 생성
-	abstract void showData();
+	//abstract void showData();
 	
 }

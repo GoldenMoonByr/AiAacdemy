@@ -1,4 +1,4 @@
-package ver04;
+package ver06;
 
 import java.util.Scanner;
 
@@ -10,9 +10,10 @@ public class PhoneBookManager {
 	// 배열에 저장된 요소의 개수
 	int numOfInfor;
 	Scanner sc;
+	
 
 	// 생성자를 통해서 배열 생성 , 요소의 개수 초기화
-	PhoneBookManager(int num) {
+	private PhoneBookManager(int num) {
 
 		inforsBook = new PhoneInfor[num];
 
@@ -20,6 +21,14 @@ public class PhoneBookManager {
 		sc = new Scanner(System.in);
 
 	}
+	
+	//싱글톤 처리
+	private static PhoneBookManager manager =new PhoneBookManager(100);
+	public static PhoneBookManager getInstandce() {
+		return manager;
+	}
+	
+	
 
 	// 2. 배열에 정보 저장
 	// 2-1 . 배열에 추가
@@ -40,8 +49,10 @@ public class PhoneBookManager {
 //		sc.hasNextLine();
 
 		// 사용자 선택 번호
+		try {
 		int select = Integer.parseInt(sc.nextLine());
-
+		
+		
 		if (!(select > 0 && select < 5)) {
 			System.out.println("정상적인 메뉴 선택이 아닙니다. \n 메뉴를 다시 선택해주세요.");
 			return;
@@ -60,11 +71,11 @@ public class PhoneBookManager {
 		PhoneInfor infor = null;
 		switch (select) {
 		// 2,2,2 기본 클래스로 인스턴스 생성
-		case 1:
+		case MenuNum.NORMAL:
 			infor = new PhoneInfor(name, phoneNumber, addr, email);
 			break;
 		// 2.2.3 대학 클래스로 인스턴스 생성
-		case 2:
+		case MenuNum.UNIVFRIEND:
 			System.out.println("전공(학과)를 입력해주세요.");
 			String major = sc.nextLine();
 			System.out.println("학년 정보를 입력해주세요.");
@@ -73,7 +84,7 @@ public class PhoneBookManager {
 			infor = new PhoneUnivInfor(name, phoneNumber, addr, email, major, grade);
 			break;
 		// 2.2.4 회사 클래스로 인스턴스 생성
-		case 3:
+		case MenuNum.COMPANYFRIEND:
 			System.out.println("회사명을 입력해주세요.");
 			String company = sc.nextLine();
 			System.out.println("부서의 이름을 입력해주세요.");
@@ -84,7 +95,7 @@ public class PhoneBookManager {
 			infor = new PhoneCompany(name, phoneNumber, addr, email, company, dept, job);
 			break;
 		// 2.2.5 동호회 클래스로 인스턴스 생성
-		case 4:
+		case MenuNum.CAFRFRIEND:
 			System.out.println("동호회 이름을 입력해주세요.");
 			String cafeName = sc.nextLine();
 			System.out.println("닉네임을 입력해주세요.");
@@ -97,7 +108,11 @@ public class PhoneBookManager {
 			return;
 		}
 		addInfo(infor);
-
+		}
+catch(NumberFormatException e) {
+			System.out.println("잘못된 입력입니다. 다시 선택해주세요.");
+			createInfor();
+		}
 	}
 
 	// 3. 배열의 데이터 출력

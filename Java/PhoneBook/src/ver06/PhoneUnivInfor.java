@@ -1,6 +1,6 @@
-package ver04;
+package ver06;
 //PhoneInfor 클래스를 상속해서 새로운 클래스를 정의해주자.
-public class PhoneUnivInfor extends PhoneInfor{
+public class PhoneUnivInfor extends PhoneInfor {
 	
 	String major;//친구의 전공
 	String grade;//친구의 학년
@@ -11,7 +11,7 @@ public class PhoneUnivInfor extends PhoneInfor{
 	}
 
 	@Override
-	void showAllData() {	
+	public void showAllData() {	
 		super.showAllData();
 		System.out.println("전공 :"+this.major);
 		System.out.println("학년" + this.grade);

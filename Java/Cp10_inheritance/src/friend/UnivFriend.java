@@ -11,7 +11,7 @@ public class UnivFriend extends Friend {
 		this.grade = grade;
 	}
 
-	void showData() {
+public void showData() {
 		showBasicInfo();
 		System.out.println("전 공 :" + major);
 		System.out.println("학 년 :" + grade);
