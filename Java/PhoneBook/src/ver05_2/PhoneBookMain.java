@@ -3,7 +3,7 @@ package ver05_2;
 public class PhoneBookMain {
 	public static void main(String[] args) {
 
-		PhoneBookManager manager = new PhoneBookManager(100);
+		PhoneBookManager manager = PhoneBookManager.getInstance();
 
 		while (true) {
 			Menu.showMenu();

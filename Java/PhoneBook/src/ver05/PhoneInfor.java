@@ -19,7 +19,7 @@ public class PhoneInfor implements showAllInfo {
 	}
 
 	// 기본 정보 출력
-	void showBasicInfo() {
+	public void showBasicInfo() {
 		System.out.println("프로필 이름 : " + this.name);
 		System.out.println("전화번호 : " + this.phoneNumber);
 		System.out.println("주소 : " + this.email);

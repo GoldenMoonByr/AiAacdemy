@@ -12,7 +12,7 @@ public class PhoneBookManager {
 	Scanner sc;
 
 	// 생성자를 통해서 배열 생성 , 요소의 개수 초기화
-	PhoneBookManager(int num) {
+	private PhoneBookManager(int num) {
 
 		inforsBook = new PhoneInfor[num];
 
@@ -20,7 +20,15 @@ public class PhoneBookManager {
 		sc = new Scanner(System.in);
 
 	}
-
+	
+	
+	private static PhoneBookManager manager= new PhoneBookManager(100);
+	public static PhoneBookManager getInstance() {
+		
+		return manager;
+	}
+	
+	
 	// 2. 배열에 정보 저장
 	// 2-1 . 배열에 추가
 	void addInfo(PhoneInfor infor) {

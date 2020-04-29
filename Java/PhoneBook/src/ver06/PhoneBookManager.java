@@ -1,6 +1,9 @@
 package ver06;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import ver06.exception.BadNumberException;
 
 //PhoneInfor 타입의 배열로 친구들의 정보를 저장, 수정, 삭제, 검색 , 출력
 public class PhoneBookManager {
@@ -10,7 +13,6 @@ public class PhoneBookManager {
 	// 배열에 저장된 요소의 개수
 	int numOfInfor;
 	Scanner sc;
-	
 
 	// 생성자를 통해서 배열 생성 , 요소의 개수 초기화
 	private PhoneBookManager(int num) {
@@ -21,14 +23,13 @@ public class PhoneBookManager {
 		sc = new Scanner(System.in);
 
 	}
-	
-	//싱글톤 처리
-	private static PhoneBookManager manager =new PhoneBookManager(100);
+
+	// 싱글톤 처리
+	private static PhoneBookManager manager = new PhoneBookManager(100);
+
 	public static PhoneBookManager getInstandce() {
 		return manager;
 	}
-	
-	
 
 	// 2. 배열에 정보 저장
 	// 2-1 . 배열에 추가
@@ -40,40 +41,50 @@ public class PhoneBookManager {
 	}
 
 	// 2.2 사용자로 부터 받은 인스턴스 생성
+	void createInfor() throws InputMismatchException, BadNumberException, Exception, OutOfMemoryError {
+		ExceptionMethod exceptionMethod = new ExceptionMethod();
+		exceptionMethod.exceptionMethod1();
 
-	void createInfor() {
-		System.out.println("1. 일반 2. 대학 3. 회사 4. 동호회");
-		System.out.println("저장하고자 하는 친구종류 숫자를 입력해주세요 : ");
-
-//		int select = sc.nextInt();
-//		sc.hasNextLine();
-
-		// 사용자 선택 번호
-		try {
-		int select = Integer.parseInt(sc.nextLine());
 		
-		
-		if (!(select > 0 && select < 5)) {
-			System.out.println("정상적인 메뉴 선택이 아닙니다. \n 메뉴를 다시 선택해주세요.");
-			return;
+		PhoneInfor infor = null;
+		String name = null;
+		String phoneNumber = null;
+		String addr = null;
+		String email = null;
+
+		while (true) {
+			// 2.2.1 기본 정보 수집 : 이름, 전번, 주소, 이메일
+
+			System.out.println("이름을 입력해주세요 : ");
+			name = sc.nextLine();
+			System.out.println("전화번호를 입력해주세요 : ");
+			phoneNumber = sc.nextLine();
+			System.out.println("주소를 입력해주세요 : ");
+			addr = sc.nextLine();
+			System.out.println("이메일을 입력해주세요 : ");
+			email = sc.nextLine();
+
+			try {
+				if (name.trim().isEmpty() || phoneNumber.trim().isEmpty() || addr.trim().isEmpty()
+						|| email.trim().isEmpty()) {
+					StringEmptyException e = new StringEmptyException();
+					throw e;
+				}
+			} catch (StringEmptyException e) {
+				System.out.println("기본 정보는 모두 입력해주셔야 합니다.");
+				System.out.println("다시 입력해주세요.\n");
+				continue;
+			}
+
+			break;
 		}
 
-		// 2.2.1 기본 정보 수집 : 이름, 전번, 주소, 이메일
-		System.out.println("이름을 입력해주세요 : ");
-		String name = sc.nextLine();
-		System.out.println("전화번호를 입력해주세요 : ");
-		String phoneNumber = sc.nextLine();
-		System.out.println("주소를 입력해주세요 : ");
-		String addr = sc.nextLine();
-		System.out.println("이메일을 입력해주세요 : ");
-		String email = sc.nextLine();
-
-		PhoneInfor infor = null;
-		switch (select) {
+		switch (exceptionMethod.select) {
 		// 2,2,2 기본 클래스로 인스턴스 생성
 		case MenuNum.NORMAL:
 			infor = new PhoneInfor(name, phoneNumber, addr, email);
 			break;
+
 		// 2.2.3 대학 클래스로 인스턴스 생성
 		case MenuNum.UNIVFRIEND:
 			System.out.println("전공(학과)를 입력해주세요.");
@@ -107,12 +118,8 @@ public class PhoneBookManager {
 			System.out.println("정상적인 메뉴 선택이 아닙니다. \n 메뉴를 다시 선택해주세요.");
 			return;
 		}
+
 		addInfo(infor);
-		}
-catch(NumberFormatException e) {
-			System.out.println("잘못된 입력입니다. 다시 선택해주세요.");
-			createInfor();
-		}
 	}
 
 	// 3. 배열의 데이터 출력
@@ -141,7 +148,7 @@ catch(NumberFormatException e) {
 				searchIndex = i;
 				break;
 			}
-			
+
 		}
 
 		return searchIndex;
