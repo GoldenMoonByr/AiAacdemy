@@ -53,6 +53,8 @@ public class PhoneBookManager {
 		int select = Integer.parseInt(sc.nextLine());
 
 		
+		
+		
 		if (select <= 0 || select >= 5) {
 			System.out.println("정상적인 메뉴 선택이 아닙니다. \n 메뉴를 다시 선택해주세요.");
 			return;

@@ -195,6 +195,7 @@ public class PhoneBookManager {
 				String grade = sc.nextLine();
 
 				infor = new PhoneUnivInfor(editName, phoneNumber, addr, email, major, grade);
+				
 			} else if (inforsBook[index] instanceof PhoneCompany) {
 				System.out.println("회사명을 입력해주세요.");
 				String company = sc.nextLine();
