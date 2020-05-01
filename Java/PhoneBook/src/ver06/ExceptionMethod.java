@@ -27,7 +27,7 @@ public class ExceptionMethod {
 				if (!(select >= MenuNum.NORMAL && select <= MenuNum.CAFRFRIEND)) {
 
 					// 강제적인 예외 발생
-					throw new BadNumberException("잘못된 메뉴 입력입니다!");
+					throw new BadNumberException("");
 				}
 
 			} catch (InputMismatchException e) {

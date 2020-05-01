@@ -1,6 +1,6 @@
 package ver05_2;
 
-public class PhoneCompany extends PhoneInfor {
+public class PhoneCompany extends PhoneInfor implements Info {
 
 	String company; // 회사이름
 	String dept; // 부서이름
