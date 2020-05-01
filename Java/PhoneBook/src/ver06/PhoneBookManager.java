@@ -1,25 +1,33 @@
 package ver06;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.LinkedList;
 import java.util.Scanner;
-
 import ver06.exception.BadNumberException;
+
+//2020.05.01 수정
+//수정 내용 : ArrayList 컬렉션 적용하여 변경
 
 //PhoneInfor 타입의 배열로 친구들의 정보를 저장, 수정, 삭제, 검색 , 출력
 public class PhoneBookManager {
 
 	// 1. 배열 생성
-	PhoneInfor[] inforsBook;
+	// PhoneInfor[] inforsBook;
+	// 정보를 저장할 배열리스트 생성
+	ArrayList<PhoneInfor> pBooks;
 	// 배열에 저장된 요소의 개수
-	int numOfInfor;
+	// int numOfInfor;
 	Scanner sc;
 
 	// 생성자를 통해서 배열 생성 , 요소의 개수 초기화
 	private PhoneBookManager(int num) {
 
-		inforsBook = new PhoneInfor[num];
+		// inforsBook = new PhoneInfor[num];
+		// 정보를 저장할 배열리스트 초기화
+		pBooks = new ArrayList<>();
 
-		numOfInfor = 0;
+		// numOfInfor = 0;
 		sc = new Scanner(System.in);
 
 	}
@@ -36,8 +44,10 @@ public class PhoneBookManager {
 	void addInfo(PhoneInfor infor) {
 		// 배열에 numOfInfo 숫자 - > index로 참조값을 저장
 
-		inforsBook[numOfInfor] = infor;
-		numOfInfor++;
+		// 별도의 count 저장 index 번호를 지정하지 않아도
+		// 알아서 순서대로 저장이 됨을 알 수 있다.
+		pBooks.add(infor);
+
 	}
 
 	// 2.2 사용자로 부터 받은 인스턴스 생성
@@ -45,7 +55,6 @@ public class PhoneBookManager {
 		ExceptionMethod exceptionMethod = new ExceptionMethod();
 		exceptionMethod.exceptionMethod1();
 
-		
 		PhoneInfor infor = null;
 		String name = null;
 		String phoneNumber = null;
@@ -128,8 +137,9 @@ public class PhoneBookManager {
 		// for each 반복문 : 현재 이 프로그램에서는 사용 불가
 		// for 반복문 : 반복의 횟수를 직접 지정가능 , numOfInfo
 		System.out.println("==========전체 정보============");
-		for (int i = 0; i < numOfInfor; i++) {
-			inforsBook[i].showAllData();
+		// 배열 리스트의 형태에 맞게 변경
+		for (int i = 0; i < pBooks.size(); i++) {
+			pBooks.get(i).showAllData();
 			System.out.println("============================");
 
 		}
@@ -141,8 +151,8 @@ public class PhoneBookManager {
 		int searchIndex = -1; // 정상적인 index 값은 0~이상의 값, 찾지 못했을 때 구분 값 -1사용
 
 		// 배열의 반복으로 name 값을 비교해서 index 값을 찾는다.
-		for (int i = 0; i < numOfInfor; i++) {
-			if (inforsBook[i].checkName(name))
+		for (int i = 0; i < pBooks.size(); i++) {
+			if (pBooks.get(i).checkName(name))
 
 			{
 				searchIndex = i;
@@ -164,7 +174,7 @@ public class PhoneBookManager {
 			System.out.println("검색하신 이름의 정보가 없습니다.");
 		} else {
 			System.out.println("============================");
-			inforsBook[index].showBasicInfo();
+			pBooks.get(index).showAllData();
 			System.out.println("============================");
 		}
 
@@ -178,14 +188,18 @@ public class PhoneBookManager {
 		if (index < 0) {
 			System.out.println("삭제하시고자 하는 이름의 정보가 없습니다.");
 		} else {
+			// 기존의 방법과 달리 삭제하는 기능 자체를 delete 메소드가 갖고 있으므로
+			// delete 메소드만 선언해주면 된다.
+			pBooks.remove(index);
+			System.out.println("삭제되었습니다.");
 			// 삭제 위치에서 왼쪽으로 shift
-			for (int i = index; i < numOfInfor - 1; i++) {
-				inforsBook[i] = inforsBook[i + 1];
-			}
-			// 삭제가 되었으므로 요소의 개수도 -1
-			numOfInfor--;
+//			for (int i = index; i < pBooks.size() ; i++) {
+//				pBooks.get(i)=pBooks.get(i+1);
 		}
+		// 삭제가 되었으므로 요소의 개수도 -1
+		// numOfInfor--;
 	}
+//	}
 
 	// 6. 배열의 정보를 수정 : 이름 기준
 	void editInfo() {
@@ -197,7 +211,7 @@ public class PhoneBookManager {
 			return;
 		} else {
 
-			String editName = inforsBook[index].getName();
+			String editName = pBooks.get(index).getName();
 			System.out.println("편집하실 내용을 입력해주세요.");
 			System.out.println("이름은" + editName + "입니다.");
 			System.out.println("전화번호를 입력해주세요.");
@@ -209,15 +223,15 @@ public class PhoneBookManager {
 
 			PhoneInfor infor = null;
 			// 저장된 인스턴스가 : 기본인지, 대학인지, 회사인지, 동호회인지
-
-			if (inforsBook[index] instanceof PhoneUnivInfor) {
+			// PhoneInfor[index] = > pBook.get(index)
+			if (pBooks.get(index) instanceof PhoneUnivInfor) {
 				System.out.println("전공을 입력해주세요.");
 				String major = sc.nextLine();
 				System.out.println("학년을 입력해주세요.");
 				String grade = sc.nextLine();
 
 				infor = new PhoneUnivInfor(editName, phoneNumber, addr, email, major, grade);
-			} else if (inforsBook[index] instanceof PhoneCompany) {
+			} else if (pBooks.get(index) instanceof PhoneCompany) {
 				System.out.println("회사명을 입력해주세요.");
 				String company = sc.nextLine();
 				System.out.println("부서명을 입력해주세요.");
@@ -227,7 +241,7 @@ public class PhoneBookManager {
 
 				infor = new PhoneCompany(editName, phoneNumber, addr, email, company, dept, job);
 
-			} else if (inforsBook[index] instanceof PhoneCafeInfo) {
+			} else if (pBooks.get(index) instanceof PhoneCafeInfo) {
 				System.out.println("동호회명을 입력해주세요.");
 				String cafeName = sc.nextLine();
 				System.out.println("닉네임을 입력해주세요.");
@@ -235,10 +249,13 @@ public class PhoneBookManager {
 
 				infor = new PhoneCafeInfo(editName, phoneNumber, addr, email, cafeName, nickName);
 
-			} else if (inforsBook[index] instanceof PhoneInfor) {
+			} else if (pBooks.get(index) instanceof PhoneInfor) {
 				infor = new PhoneInfor(editName, phoneNumber, addr, email);
 			}
-			inforsBook[index] = infor;
+			//해당 index에 저장하기 전에 반드시 기존 정보를 지워줘야 함
+			pBooks.remove(index);
+			// List의 index 위치에 새로운 정보 저장
+			pBooks.add(index,infor);
 		}
 
 	}
