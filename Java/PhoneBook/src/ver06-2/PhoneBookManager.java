@@ -2,9 +2,7 @@ package ver06;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.LinkedList;
 import java.util.Scanner;
-import ver06.exception.BadNumberException;
 
 //2020.05.01 수정
 //수정 내용 : ArrayList 컬렉션 적용하여 변경
@@ -52,9 +50,42 @@ public class PhoneBookManager {
 	}
 
 	// 2.2 사용자로 부터 받은 인스턴스 생성
-	void createInfor() throws InputMismatchException, BadNumberException, Exception, OutOfMemoryError {
-		ExceptionMethod exceptionMethod = new ExceptionMethod();
-		exceptionMethod.exceptionMethod1();
+	void createInfor() {
+		
+		int select;
+		while (true) {
+
+			System.out.println("1. 일반 2. 대학 3. 회사 4. 동호회");
+			System.out.println("저장하고자 하는 친구종류 숫자를 입력해주세요 : ");
+
+			try {
+
+				select = Integer.parseInt(sc.nextLine());
+
+				if (!(select >= MenuNum.NORMAL && select <= MenuNum.CAFRFRIEND)) {
+
+					// 강제적인 예외 발생
+					throw new BadNumberException("");
+				}
+
+			} catch (InputMismatchException e) {
+				System.out.println("잘못된 입력입니다^^ 다시 입력해주세요.");
+				// manager.sc.nextLine();
+				continue;
+			} catch (BadNumberException e) {
+				System.out.println("메뉴 범위를 벗어난 숫자 입력입니다.\n 다시 확인 후 입력해주세요.");
+				continue;
+			} catch (Exception e) {
+				System.out.println("잘못된 입력입니다^^ 다시 입력해주세요.");
+				// manager.sc.nextLine();
+				continue;
+			} finally {
+				sc.nextLine();
+			}
+			break;
+
+		}
+		
 
 		PhoneInfor infor = null;
 		String name = null;
@@ -89,7 +120,7 @@ public class PhoneBookManager {
 			break;
 		}
 
-		switch (exceptionMethod.select) {
+		switch (select) {
 		// 2,2,2 기본 클래스로 인스턴스 생성
 		case MenuNum.NORMAL:
 			infor = new PhoneInfor(name, phoneNumber, addr, email);
@@ -113,7 +144,7 @@ public class PhoneBookManager {
 			System.out.println("직책(직급)정보를 입력해주세요.");
 			String job = sc.nextLine();
 
-			infor = new PhoneCompany(name, phoneNumber, addr, email, company, dept, job);
+			infor = new PhoneCompanyInfor(name, phoneNumber, addr, email, company, dept, job);
 			break;
 		// 2.2.5 동호회 클래스로 인스턴스 생성
 		case MenuNum.CAFRFRIEND:
@@ -233,7 +264,7 @@ public class PhoneBookManager {
 				String grade = sc.nextLine();
 
 				infor = new PhoneUnivInfor(editName, phoneNumber, addr, email, major, grade);
-			} else if (pBooks.get(index) instanceof PhoneCompany) {
+			} else if (pBooks.get(index) instanceof PhoneCompanyInfor) {
 				System.out.println("회사명을 입력해주세요.");
 				String company = sc.nextLine();
 				System.out.println("부서명을 입력해주세요.");
@@ -241,7 +272,7 @@ public class PhoneBookManager {
 				System.out.println("직책(직급)을 입력해주세요.");
 				String job = sc.nextLine();
 
-				infor = new PhoneCompany(editName, phoneNumber, addr, email, company, dept, job);
+				infor = new PhoneCompanyInfor(editName, phoneNumber, addr, email, company, dept, job);
 
 			} else if (pBooks.get(index) instanceof PhoneCafeInfo) {
 				System.out.println("동호회명을 입력해주세요.");
@@ -258,6 +289,7 @@ public class PhoneBookManager {
 			pBooks.remove(index);
 			// List의 index 위치에 새로운 정보 저장
 			pBooks.add(index,infor);
+			//pBooks.set(index, infor); 또한 가능
 		}
 
 	}
