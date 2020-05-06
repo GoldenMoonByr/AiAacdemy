@@ -15,7 +15,7 @@ public class ListManagement {
 	
 
 	void itemList() {
-		String big = "강아지" , medium ="사료\t", name = "소형견 사료"; int price = 25700 , count = 50;
+		String big = "강아지" , medium ="사료", name = "소형견 사료"; int price = 25700 , count = 50;
 		list = new CanOrderList(big, medium, name, price, count);
 		lists.add(list);
 		name = "중형견 사료"; price = 35200;
@@ -24,7 +24,7 @@ public class ListManagement {
 		name ="소형견 사료";price = 51000;
 		list = new CanOrderList(big, medium, name, price, count);
 		lists.add(list);
-		medium = "간식\t"; name = "강아지 껌" ; price = 9800;
+		medium = "간식"; name = "강아지 껌" ; price = 9800;
 		list = new CanOrderList(big, medium, name, price, count);
 		lists.add(list);
 		name = "강아지 육포" ; price = 12100;
@@ -33,7 +33,7 @@ public class ListManagement {
 		name = "강아지 먹는 치약" ; price = 13800;
 		list = new CanOrderList(big, medium, name, price, count);
 		lists.add(list);
-		medium = "장난감\t"; name = "애견 이갈이 탱탱볼" ; price = 23000;
+		medium = "장난감"; name = "애견 이갈이 탱탱볼" ; price = 23000;
 		list = new CanOrderList(big, medium, name, price, count);
 		lists.add(list);
 		name = "애견 노즈워크 담요" ; price = 37900;
@@ -51,7 +51,7 @@ public class ListManagement {
 		name = "애견 목욕 장갑" ; price = 5300;
 		list = new CanOrderList(big, medium, name, price, count);
 		lists.add(list);
-		big = "고양이"; medium ="사료\t"; name = "소형묘 사료"; price = 26900 ;
+		big = "고양이"; medium ="사료"; name = "소형묘 사료"; price = 26900 ;
 		list = new CanOrderList(big, medium, name, price, count);
 		lists.add(list);
 		name = "중형묘 사료"; price = 34450 ;
@@ -60,7 +60,7 @@ public class ListManagement {
 		name = "대형묘 사료"; price = 47500 ;
 		list = new CanOrderList(big, medium, name, price, count);
 		lists.add(list);
-		medium ="간식\t"; name = "고양이 츄르"; price = 3800 ;
+		medium ="간식"; name = "고양이 츄르"; price = 3800 ;
 		list = new CanOrderList(big, medium, name, price, count);
 		lists.add(list);
 		name = "참치볼"; price = 11500 ;
@@ -69,7 +69,7 @@ public class ListManagement {
 		name = "연어볼"; price= 13200 ;
 		list = new CanOrderList(big, medium, name, price, count);
 		lists.add(list);
-		medium ="장난감\t"; name = "고양이 3단 낚시대"; price = 11900 ;
+		medium ="장난감"; name = "고양이 3단 낚시대"; price = 11900 ;
 		list = new CanOrderList(big, medium, name, price, count);
 		lists.add(list);
 		name = "냥냥펀치 토이볼"; price = 31800 ;
@@ -94,7 +94,7 @@ public class ListManagement {
 	
 	void showAllData(){
 		for(int i =0; i<lists.size();i++) {
-			lists.get(i).showData();
+			lists.get(i).showData(i);
 		}
 	}
 

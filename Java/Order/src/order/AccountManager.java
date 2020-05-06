@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AccountManager {
-	ArrayList<AccountInfo> accountInfoBooks;
+	ArrayList<AccountInfo> InfoBooks;
 	
 
 	AccountInfo info;
+	ListManagement lists = new ListManagement();
 	Scanner sc;
 
 	
 
 	AccountManager() {
 	
-		accountInfoBooks = new ArrayList<>();
+		InfoBooks = new ArrayList<>();
 		info = null;
 		sc = new Scanner(System.in);
 
@@ -24,7 +25,7 @@ public class AccountManager {
 
 	void addAccount() {
 		//accountInfoBooks.add(createInstance());
-		accountInfoBooks.add(createInstance());
+		InfoBooks.add(createInstance());
 	
 		System.out.println("저장되었습니다!");
 	}
@@ -46,17 +47,17 @@ public class AccountManager {
 	}
 	
 	void showAllAccountData() {
-		for(int i = 0;  i<accountInfoBooks.size();i++) {
+		for(int i = 0;  i<InfoBooks.size();i++) {
 			System.out.println("==============================");
-			accountInfoBooks.get(i).showBasicData();
+			InfoBooks.get(i).showBasicData();
 		
 		}
 	}
 	
 	int searchIndex(String name) {
 		int searchIndex = -1;
-		for (int i = 0; i <accountInfoBooks.size(); i++) {
-			if (accountInfoBooks.get(i).checkAccountName(name)) {
+		for (int i = 0; i <InfoBooks.size(); i++) {
+			if (InfoBooks.get(i).checkAccountName(name)) {
 				searchIndex=i;
 				break;
 			}
@@ -74,11 +75,19 @@ public class AccountManager {
 				System.out.println("잘못된 정보 입니다. 다시 입력해주세요.");
 				continue;
 			} else {
-				accountInfoBooks.get(index).showBasicData();
-				break;
+				InfoBooks.get(index).showBasicData();
+				System.out.println("해당 업체의 발주 가능 품목을 검색하시겠습니까?(예는 1번을, 아니오는 2번을 눌러주세요.)");
+				int num = sc.nextInt();
+				if(num==1) {lists.showAllData();}
+				else if(num==2) {
+					System.out.println("전 단계로 돌아갑니다.");
+					break;
+				}
 			}
 		}
 	}
+	
+	
 
 	void deleteAccountInfor() {
 		while (true) {
@@ -89,7 +98,7 @@ public class AccountManager {
 				System.out.println("잘못된 정보 입니다. 다시 입력해주세요.");
 				continue;
 			} else {
-				accountInfoBooks.remove(index);
+				InfoBooks.remove(index);
 				System.out.println("해당 거래처의 정보가 삭제되었습니다.");
 				break;
 			}
@@ -116,8 +125,8 @@ public class AccountManager {
 				String address = sc.nextLine();
 				AccountInfo Info = null;
 				info = new AccountInfo(name, manager, phoneNumber, address);
-				accountInfoBooks.remove(index);
-				accountInfoBooks.add(index, info);
+				InfoBooks.remove(index);
+				InfoBooks.add(index, info);
 				System.out.println("수정되었습니다!");
 				break;
 			}

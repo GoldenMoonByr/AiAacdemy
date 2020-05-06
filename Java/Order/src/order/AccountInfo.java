@@ -7,6 +7,8 @@ public class AccountInfo {
 	String accountPhoneNumber;
 	String accountManager;
 	String accountAddr;
+	ListManagement lists = new ListManagement();
+	
 //	ArrayList<AccountInfo> AccountInfoBooks = null;
 	
 	AccountInfo(String accountName,String accountManager,String accountPhoneNumber,String accountAddr) {
@@ -27,7 +29,7 @@ public class AccountInfo {
 	}
 	
 	void showAllData() {
-		showBasicData();
+		lists.showAllData();
 //		System.out.println("판매 품목");
 //		for(int i = 0; i < AccountInfoBooks.size();i++) {
 //			AccountInfoBooks.get(i).showAllData();
@@ -35,7 +37,7 @@ public class AccountInfo {
 	}
 	
 	boolean checkAccountName(String name) {
-		if(this.accountName==name) {
+		if(this.accountName.equals(name)) {
 			return true;
 		}
 		else 

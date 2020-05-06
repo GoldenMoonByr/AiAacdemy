@@ -7,6 +7,8 @@ public class CanOrderList {
 	String name;
 	int price;
 	int count;
+	ListManagement lists = new ListManagement();
+	
 
 	CanOrderList(String bigCategory, String mediCategory, String name, int price, int count) {
 		this.bigCategory = bigCategory;
@@ -15,10 +17,13 @@ public class CanOrderList {
 		this.price = price;
 		this.count = count;
 	}
+	
+	
 
-	void showData() {
+	void showData(int i) {
 		System.out.println("==========================================================================");
 		System.out.println(
-				"대분류 : " + bigCategory + "\t\t\t중분류 : " + mediCategory + "\t\t이름 : " + name + "\t\t가격 : " + price +"원 \t 개수 : " + count+"개");
+				"["+i+"]대분류 : "+ bigCategory +"\t\t중분류 : "+ mediCategory+"\t이름 : " + name + "\n\t\t\t\t\t가격 : " + price +"원 \t 발주 가능 개수 : " + count+"개");
 	}
 }
+
