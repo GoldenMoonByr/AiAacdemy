@@ -6,32 +6,25 @@ import java.util.Scanner;
 public class AccountManager {
 	ArrayList<AccountInfo> InfoBooks;
 	
-
 	AccountInfo info;
-	ListManagement lists = new ListManagement();
+	Item lists = new Item();
 	Scanner sc;
 
-	
-
 	AccountManager() {
-	
+
 		InfoBooks = new ArrayList<>();
 		info = null;
 		sc = new Scanner(System.in);
 
 	}
-	
-	
 
 	void addAccount() {
-		//accountInfoBooks.add(createInstance());
+		// accountInfoBooks.add(createInstance());
 		InfoBooks.add(createInstance());
-	
+		
 		System.out.println("저장되었습니다!");
 	}
 
-	
-	
 	AccountInfo createInstance() {
 		System.out.println("거래처 이름을 입력해주세요.");
 		String accountName = sc.nextLine();
@@ -45,20 +38,20 @@ public class AccountManager {
 		return info;
 
 	}
-	
+
 	void showAllAccountData() {
-		for(int i = 0;  i<InfoBooks.size();i++) {
+		for (int i = 0; i < InfoBooks.size(); i++) {
 			System.out.println("==============================");
 			InfoBooks.get(i).showBasicData();
-		
+
 		}
 	}
-	
+
 	int searchIndex(String name) {
 		int searchIndex = -1;
-		for (int i = 0; i <InfoBooks.size(); i++) {
+		for (int i = 0; i < InfoBooks.size(); i++) {
 			if (InfoBooks.get(i).checkAccountName(name)) {
-				searchIndex=i;
+				searchIndex = i;
 				break;
 			}
 
@@ -75,18 +68,11 @@ public class AccountManager {
 				System.out.println("잘못된 정보 입니다. 다시 입력해주세요.");
 				continue;
 			} else {
-				InfoBooks.get(index).showBasicData();
-				System.out.println("해당 업체의 발주 가능 품목을 검색하시겠습니까?(예는 1번을, 아니오는 2번을 눌러주세요.)");
-				int num = sc.nextInt();
-				if(num==1) {lists.showAllData();}
-				else if(num==2) {
-					System.out.println("전 단계로 돌아갑니다.");
+					InfoBooks.get(index).showBasicData();
 					break;
 				}
 			}
 		}
-	}
-	
 	
 
 	void deleteAccountInfor() {

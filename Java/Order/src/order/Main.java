@@ -6,15 +6,17 @@ public class Main {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		AccountManager manager = new AccountManager();
-		ListManagement listManager = new ListManagement();
+		Item listManager = new Item();
 		
 		while(true) {
+			System.out.println("====================");
 			System.out.println("1.거래처 등록");
 			System.out.println("2.거래처 검색");
 			System.out.println("3.거래처 수정");
 			System.out.println("4.거래처 삭제");
 			System.out.println("5.거래처 목록");
-			System.out.println("6.판매가능 목록");
+			System.out.println("6.발주 관리");
+			System.out.println("====================");
 			int number = sc.nextInt();
 			sc.nextLine();
 			switch(number) {
@@ -36,7 +38,6 @@ public class Main {
 			case 6:
 				listManager.itemList();
 				listManager.showAllData();
-				break;
 			default :
 				System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
 				continue;
