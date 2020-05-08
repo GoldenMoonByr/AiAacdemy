@@ -7,20 +7,15 @@ public class AccountManagement {
 	ArrayList<AccountInfo> InfoBooks;
 
 	AccountInfo info;
-	Item lists = new Item();
+
 	Scanner sc;
 
 	AccountManagement() {
 
-			InfoBooks = new ArrayList<>();
-			info = null;
-			sc = new Scanner(System.in);
+		InfoBooks = new ArrayList<>();
+		info = null;
+		sc = new Scanner(System.in);
 
-		}
-	
-	void selectAccount(String name) {
-		for (int i = InfoBooks.size() - 1; i >= 0; i--) {
-			if (InfoBooks.get(i).getAccountName().equals(name)) {
 	}
 
 	void addAccount() {
@@ -28,6 +23,18 @@ public class AccountManagement {
 		InfoBooks.add(createInstance());
 
 		System.out.println("저장되었습니다!");
+	}
+
+	AccountInfo accountSelect() {
+		System.out.println("선택하실 거래처 이름을 입력하세요. >");
+		String name = sc.nextLine();
+		for (int i = 0; i < InfoBooks.size(); i++) {
+			if (InfoBooks.get(i).getAccountName().equals(name)) {
+				return InfoBooks.get(i);
+			}
+		}
+		return null;
+
 	}
 
 	AccountInfo createInstance() {
@@ -39,7 +46,13 @@ public class AccountManagement {
 		String accountPhoneNumber = sc.nextLine();
 		System.out.println("거래처 주소를 입력해주세요.");
 		String accountAddr = sc.nextLine();
+		if(accountName.trim().isEmpty()) {
+			System.out.println("거래처 이름은 꼭 입력해주셔야 합니다.");
+			createInstance();
+		}
+		else {
 		info = new AccountInfo(accountName, accountManager, accountPhoneNumber, accountAddr);
+		}
 		return info;
 
 	}
@@ -47,7 +60,7 @@ public class AccountManagement {
 	void showAllAccountData() {
 		for (int i = 0; i < InfoBooks.size(); i++) {
 			System.out.println("==============================");
-			InfoBooks.get(i).showBasicData();
+			InfoBooks.get(i).showAccountInfo();
 
 		}
 	}
@@ -73,7 +86,7 @@ public class AccountManagement {
 				System.out.println("잘못된 정보 입니다. 다시 입력해주세요.");
 				continue;
 			} else {
-				InfoBooks.get(index).showBasicData();
+				InfoBooks.get(index).showAccountInfo();
 				break;
 			}
 		}

@@ -6,17 +6,17 @@ import java.util.Scanner;
 
 public class AccountInfo {
 	Scanner sc;
-	String accountName;
-	String accountPhoneNumber;
-	String accountManager;
-	String accountAddr;
-	List<Item> ItemList;
+	private String accountName;
+	private String accountPhoneNumber;
+	private String accountManager;
+	private String accountAddr;
+	List<Item> ItemList = new ArrayList<>();
 	AccountInfo(String accountName, String accountPhoneNumber , String accountManager, String accountAddr){
 		this.accountName = accountName;
 		this.accountPhoneNumber = accountPhoneNumber;
 		this.accountManager = accountManager;
 		this.accountAddr = accountAddr;
-		ItemList = new ArrayList<>();
+//		ItemList = new ArrayList<>();
 		sc = new Scanner(System.in);
 	}
 	
@@ -96,13 +96,22 @@ public class AccountInfo {
 		}
 	}
 	
-	void showBasicData() {
-		System.out.println("거래처 이름 : " + accountName);
-		System.out.println("거래처 담당자 :" + accountManager);
-		System.out.println("거래처 연락처 :" + accountPhoneNumber);
-		System.out.println("거래처 주소 : " + accountAddr);
-
+	void showAccountInfo() {
+		System.out.println("[거래처 이름] > "+ accountName);
+		System.out.println("[거래처 전화번호] > "+accountPhoneNumber );
+		System.out.println("[거래처 담당자] > "+accountManager );
+		System.out.println("[거래처 주소] > "+ accountAddr);
+		
+		
 	}
+	void showBasicData() {
+		for(int i =0 ; i <ItemList.size() ; i++) {
+			System.out.println("["+i+"] [대분류] : "+ItemList.get(i).getBigCategory()+ "\t중분류] : " + ItemList.get(i).getMediCategory() + "\t[이름] : " +ItemList.get(i).getName() +"\t[가격] : "+ItemList.get(i).getPrice() +"\t[수량] : "+ItemList.get(i).getCount());
+		}
+	}
+	
+	
+	
 	
 	boolean checkAccountName(String name) {
 		if (this.accountName.equals(name)) {

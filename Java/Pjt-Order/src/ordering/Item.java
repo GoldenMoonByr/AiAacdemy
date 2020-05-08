@@ -7,9 +7,6 @@ public class Item {
 	private int price;
 	private int count;
 	
-	Item(){
-		
-	}
 	
 	Item(String bigCategory,String mediCategory,String name,int price,int count){
 		this.bigCategory = bigCategory;
@@ -19,6 +16,10 @@ public class Item {
 		this.count = count;
 	}
 	
+	public Item() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getBigCategory(){
 		return this.bigCategory;
 	}
