@@ -62,7 +62,8 @@ public class Item {
 	}
 	
 	void showData(int i) {
-		System.out.println("==========================================================================");
+		System.out.println(
+				"****************************************************************************************************************");
 		System.out.println(
 				"["+i+"]대분류 : "+ bigCategory +"\t\t중분류 : "+ mediCategory+"\t\t이름 : " + name + "\n\t가격 : " + price +"원 \t\t 발주 가능 개수 : " + count+"개");
 	}
