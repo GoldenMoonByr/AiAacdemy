@@ -23,7 +23,7 @@ public class Main implements MenuNumInterface {
 			} catch (Exception e) {
 
 				System.out.println("*************************************************************************");
-				System.out.println("                      잘못된 입력입니다! 확인 후 다시 입력해주세요.                     ");
+				System.out.println("                    잘못된 입력입니다! 확인 후 다시 입력해주세요.                     ");
 				System.out.println("*************************************************************************");
 				continue;
 			} finally {
@@ -34,7 +34,7 @@ public class Main implements MenuNumInterface {
 				account = manager.accountSelect();
 				if (account == null) {
 					System.out.println("*************************************************************************");
-					System.out.println("                           찾으시는 거래처 정보가 없습니다.");
+					System.out.println("                          찾으시는 거래처 정보가 없습니다.");
 					System.out.println("*************************************************************************");
 					break;
 				}
@@ -45,7 +45,7 @@ public class Main implements MenuNumInterface {
 						key2 = sc.nextInt();
 					} catch (Exception e) {
 						System.out.println("*************************************************************************");
-						System.out.println("                      잘못된 입력입니다! 확인 후 다시 입력해주세요.                     ");
+						System.out.println("                  잘못된 입력입니다! 확인 후 다시 입력해주세요.                     ");
 						System.out.println("*************************************************************************");
 						continue;
 					} finally {
@@ -91,6 +91,9 @@ public class Main implements MenuNumInterface {
 				order.showOrderList();
 				break;
 			case A_EXITPROGRAMM:
+				System.out.println("*******************************************************************************************");
+				System.out.println("                     시스템을 종료합니다. 이용해주셔서 감사합니다^^                               ");
+				System.out.println("*******************************************************************************************");
 				return;
 
 			}
