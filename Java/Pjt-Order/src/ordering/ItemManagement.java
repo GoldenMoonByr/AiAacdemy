@@ -17,6 +17,7 @@ public class ItemManagement {
 
 	public void addItem() {
 		while (true) {
+			
 			System.out.println("*******************************************************************************************");
 			System.out.println("                                       새 상품 정보를 입력해주세요.                         ");
 			System.out.println("*******************************************************************************************");
@@ -30,7 +31,6 @@ public class ItemManagement {
 			try {
 				System.out.println("[가격] > ");
 				newItem1.setPrice(sc.nextInt());
-				sc.nextLine();
 				System.out.println("[수량] > ");
 				newItem1.setCount(sc.nextInt());
 			} catch (Exception e) {
@@ -64,7 +64,7 @@ public class ItemManagement {
 		num = sc.nextInt();
 		
 		if (num == 1) {
-			for (int i = ItemList.size() - 1; i >= 0; i--) {
+			for (int i = ItemList.size() - 1; i >= 0; i--) 
 				if (ItemList.get(i).getName().equals(name)) {
 					flag = true;
 					ItemList.remove(i);
@@ -72,6 +72,7 @@ public class ItemManagement {
 						System.out.println("*******************************************************************************************");
 						System.out.println("                                     상품을 정상적으로 삭제했습니다.                        ");
 						System.out.println("*******************************************************************************************");
+						sc.nextLine();
 					} else {
 						System.out.println("*******************************************************************************************");
 						System.out.println("                                      해당 상품이 존재하지 않습니다.                         ");
@@ -79,7 +80,7 @@ public class ItemManagement {
 					}
 
 				}
-			}
+			
 		} else if (num == 2) {
 			System.out.println("이전 단계로 돌아갑니다.");
 			return;
