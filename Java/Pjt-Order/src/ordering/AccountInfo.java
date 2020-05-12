@@ -5,13 +5,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class AccountInfo extends ItemManagement {
+	
+//필드
 	Scanner sc;
 	private String accountName;
 	private String accountPhoneNumber;
 	private String accountManager;
 	private String accountAddr;
 
-
+//생성자
 	AccountInfo(){
 		
 	}
@@ -20,9 +22,11 @@ public class AccountInfo extends ItemManagement {
 		this.accountPhoneNumber = accountPhoneNumber;
 		this.accountManager = accountManager;
 		this.accountAddr = accountAddr;
-//		ItemList = new ArrayList<>();
 		sc = new Scanner(System.in);
 	}
+	
+	
+	//게터 , 세터
 
 	public String getAccountName() {
 		return this.accountName;
@@ -58,6 +62,8 @@ public class AccountInfo extends ItemManagement {
 
 
 
+	
+	//간단한 목록 출력 기능
 	void showAccountInfo() {
 		System.out.println("[거래처 이름]  >>>>>>>>" + accountName);
 		System.out.println("[거래처 전화번호]  >>>>> " + accountPhoneNumber);

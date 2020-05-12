@@ -62,6 +62,7 @@ public class ItemManagement {
 
 		System.out.println(name + " 거래처의 해당 상품을 삭제하시겠습니까? 1. Yes , 2. No");
 		num = sc.nextInt();
+		
 		if (num == 1) {
 			for (int i = ItemList.size() - 1; i >= 0; i--) {
 				if (ItemList.get(i).getName().equals(name)) {
@@ -83,7 +84,7 @@ public class ItemManagement {
 			System.out.println("이전 단계로 돌아갑니다.");
 			return;
 		}
-
+		
 	}
 
 	public void editItem() {
@@ -117,6 +118,7 @@ public class ItemManagement {
 				System.out.println("*******************************************************************************************");
 				System.out.println("                                        정상적으로 수정되었습니다.                             ");
 				System.out.println("*******************************************************************************************");
+				break;
 			}
 
 		}

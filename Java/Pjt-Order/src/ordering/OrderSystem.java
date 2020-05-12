@@ -49,7 +49,7 @@ public class OrderSystem {
 				
 				System.out.println(account.ItemList.get(orderItemNum).getName() + " 상품을 " + orderItemCount
 						+ "개 선택하셨습니다.  발주 하시겠습니까? Yes : 1 , No : 2");
-				System.out.println("                         "+account.ItemList.get(orderItemNum).getName()+"발주 후 상품의 예상 재고 수량 : " +(account.ItemList.get(orderItemNum).getCount()+stockCount+"개"));
+				System.out.println("                         "+account.ItemList.get(orderItemNum).getName()+"발주 후 상품의 예상 재고 수량 : " +(orderItemCount+stockCount+"개"));
 				System.out.println("*******************************************************************************************");
 				num = sc.nextInt();
 	
