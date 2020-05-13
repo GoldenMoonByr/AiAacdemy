@@ -9,13 +9,14 @@ public class AccountManagement {
 	AccountInfo info;
 
 	Scanner sc;
+	
+
 
 	AccountManagement() {
 
 		InfoBooks = new ArrayList<>();
 		info = null;
 		sc = new Scanner(System.in);
-
 	}
 
 
@@ -85,6 +86,7 @@ public class AccountManagement {
 	}
 
 	void searchAccountInfor() {
+		int count = 0;
 		while (true) {
 			System.out.println("*******************************************************************************************");
 			System.out.println("                                    기존 거래처의 정보를 검색합니다."                         );
@@ -95,8 +97,12 @@ public class AccountManagement {
 			int index = searchIndex(name);
 			if (index < 0) {
 				System.out.println("*******************************************************************************************");
-				System.out.println("                       잘못된 정보 입니다. 다시 입력해주세요 :)                      ");
-
+				System.out.println("           잘못된 정보 입니다. 다시 입력해주세요 :)"+(5-count)+"회 남았습니다.");
+				count++;
+				if(count ==6) {
+					System.out.println("입력 횟수를 초과하였습니다. 전 단계로 돌아갑니다.");
+					return;
+				}
 				continue;
 			} else {
 				InfoBooks.get(index).showAccountInfo();
@@ -109,9 +115,8 @@ public class AccountManagement {
 		while (true) {
 			System.out.println("*******************************************************************************************");
 			System.out.println("                                     기존 거래처의 정보를 삭제합니다.                       ");
-			System.out.println("*******************************************************************************************");
-			System.out.println("삭제하실 거래처의 이름을 입력해주세요.");
-			String name = sc.nextLine();
+			System.out.pri
+		String name = sc.nextLine();
 			int index = searchIndex(name);
 			if (index < 0) {
 				System.out.println("잘못된 정보 입니다. 다시 입력해주세요.");
