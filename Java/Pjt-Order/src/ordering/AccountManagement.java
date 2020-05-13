@@ -151,7 +151,7 @@ public class AccountManagement {
 				case 2: 
 					System.out.println("거래처의 이름은 수정하지 않겠습니다.");
 					newName = name;
-					break;
+					return;
 				default: 
 					System.out.println("*******************************************************************************************");
 					System.out.println("                           잘못 입력하셨습니다. 다시 입력해주세요.");
