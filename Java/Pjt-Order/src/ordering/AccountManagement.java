@@ -115,7 +115,7 @@ public class AccountManagement {
 		while (true) {
 			System.out.println("*******************************************************************************************");
 			System.out.println("                                     기존 거래처의 정보를 삭제합니다.                       ");
-			System.out.pri
+			
 		String name = sc.nextLine();
 			int index = searchIndex(name);
 			if (index < 0) {

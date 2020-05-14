@@ -26,7 +26,7 @@ public class Main implements MenuNumInterface {
 				System.out.println("                    잘못된 입력입니다! 확인 후 다시 입력해주세요.                     ");
 				System.out.println("*************************************************************************");
 				continue;
-			} finally {
+			}finally {
 				sc.nextLine();
 			}
 			switch (key) {
@@ -37,7 +37,7 @@ public class Main implements MenuNumInterface {
 					System.out.println("                          찾으시는 거래처 정보가 없습니다.");
 					System.out.println("*************************************************************************");
 					break;
-				}
+				}else {}
 
 				while (true) {
 					try {
@@ -68,6 +68,9 @@ public class Main implements MenuNumInterface {
 					case I_EDIT:
 						account.editItem();
 						break;
+					default :
+						System.out.println("각 기능에 맞는 번호를 선택해주세요.");
+					
 
 					}
 				}
@@ -95,6 +98,8 @@ public class Main implements MenuNumInterface {
 				System.out.println("                     시스템을 종료합니다. 이용해주셔서 감사합니다^^                               ");
 				System.out.println("*******************************************************************************************");
 				return;
+			default :
+				System.out.println("각 기능에 맞는 번호를 선택해주세요.");
 
 			}
 
