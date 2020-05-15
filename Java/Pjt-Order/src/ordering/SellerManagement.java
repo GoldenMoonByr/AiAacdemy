@@ -3,16 +3,16 @@ package ordering;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class AccountManagement {
-	ArrayList<AccountInfo> InfoBooks;
+public class SellerManagement {
+	ArrayList<SellerInfo> InfoBooks;
 
-	AccountInfo info;
+	SellerInfo info;
 
 	Scanner sc;
 	
 
 
-	AccountManagement() {
+	SellerManagement() {
 
 		InfoBooks = new ArrayList<>();
 		info = null;
@@ -20,7 +20,7 @@ public class AccountManagement {
 	}
 
 
-	AccountInfo accountSelect() {
+	SellerInfo selectAccount() {
 		System.out.println("선택하실 거래처 이름을 입력하세요. >");
 		String name = sc.nextLine();
 		for (int i = 0; i < InfoBooks.size(); i++) {
@@ -36,14 +36,15 @@ public class AccountManagement {
 		
 		InfoBooks.add(createInstance());
 		
-		System.out.println("*******************************************************************************************");
+		MainMenu.seperator();
 		System.out.println("                                      성공적으로 저장되었습니다!                                                   ");
-		System.out.println("*******************************************************************************************");
+		MainMenu.seperator();
 	}
-	AccountInfo createInstance() {
-		System.out.println("*******************************************************************************************");
+	
+	SellerInfo createInstance() {
+		MainMenu.seperator();
 		System.out.println("                                       신규 거래처를 저장합니다.                                                     ");
-		System.out.println("*******************************************************************************************");
+		MainMenu.seperator();
 		System.out.println("거래처 이름을 입력해주세요.>");
 		String accountName = sc.nextLine();
 		System.out.println("거래처 담당자를 입력해주세요.>");
@@ -53,12 +54,12 @@ public class AccountManagement {
 		System.out.println("거래처 주소를 입력해주세요.>");
 		String accountAddr = sc.nextLine();
 		if (accountName ==null || accountName.trim().isEmpty()) {
-			System.out.println("*******************************************************************************************");
+			MainMenu.seperator();
 			System.out.println("                                 거래처 이름은 꼭 입력해주셔야 합니다.                        ");
-			System.out.println("*******************************************************************************************");
+			MainMenu.seperator();
 			createInstance();
 		} else {
-			info = new AccountInfo(accountName, accountManager, accountPhoneNumber, accountAddr);
+			info = new SellerInfo(accountName, accountManager, accountPhoneNumber, accountAddr);
 		}
 		return info;
 
@@ -66,11 +67,11 @@ public class AccountManagement {
 
 	void showAllAccountData() {
 		for (int i = 0; i < InfoBooks.size(); i++) {
-			System.out.println("*******************************************************************************************");
+			MainMenu.seperator();
 			InfoBooks.get(i).showAccountInfo();
 
 		}
-		System.out.println("*******************************************************************************************");
+		MainMenu.seperator();
 	}
 
 	int searchIndex(String name) {
@@ -88,15 +89,15 @@ public class AccountManagement {
 	void searchAccountInfor() {
 		int count = 0;
 		while (true) {
-			System.out.println("*******************************************************************************************");
+			MainMenu.seperator();
 			System.out.println("                                    기존 거래처의 정보를 검색합니다."                         );
-			System.out.println("*******************************************************************************************");
+			MainMenu.seperator();
 			System.out.println("검색하실 거래처의 이름을 입력해주세요.");
 
 			String name = sc.nextLine();
 			int index = searchIndex(name);
 			if (index < 0) {
-				System.out.println("*******************************************************************************************");
+				MainMenu.seperator();
 				System.out.println("           잘못된 정보 입니다. 다시 입력해주세요 :)"+(5-count)+"회 남았습니다.");
 				count++;
 				if(count ==6) {
@@ -113,7 +114,7 @@ public class AccountManagement {
 
 	void deleteAccountInfor() {
 		while (true) {
-			System.out.println("*******************************************************************************************");
+			MainMenu.seperator();
 			System.out.println("                                     기존 거래처의 정보를 삭제합니다.                       ");
 			
 		String name = sc.nextLine();
@@ -123,16 +124,16 @@ public class AccountManagement {
 				continue;
 			} else {
 				InfoBooks.remove(index);
-				System.out.println("*******************************************************************************************");
+				MainMenu.seperator();
 				System.out.println("                                해당 거래처의 정보가 삭제되었습니다                                  ");
-				System.out.println("*******************************************************************************************");
+				MainMenu.seperator();
 				break;
 			}
 		}
 
 	}
 
-	void accountInfoEdit() {
+	void editAccountInfo() {
 
 		while (true) {
 			System.out.println("수정하실 거래처의 이름을 입력해주세요.");
@@ -143,9 +144,9 @@ public class AccountManagement {
 				System.out.println("잘못된 정보 입니다. 다시 입력해주세요.");
 				continue;
 			} else {
-				System.out.println("*******************************************************************************************");
+				MainMenu.seperator();
 				System.out.println("                                     "+ name + "의 정보를 수정합니다.                       ");
-				System.out.println("*******************************************************************************************");
+				MainMenu.seperator();
 				System.out.println("거래처의 이름을 수정하시겠습니까?(1.Yes , 2.No)");
 				int num = Integer.parseInt(sc.nextLine());
 				switch(num) {
@@ -158,9 +159,9 @@ public class AccountManagement {
 					newName = name;
 					return;
 				default: 
-					System.out.println("*******************************************************************************************");
+					MainMenu.seperator();
 					System.out.println("                           잘못 입력하셨습니다. 다시 입력해주세요.");
-					System.out.println("*******************************************************************************************");
+					MainMenu.seperator();
 					continue;
 				}
 			
@@ -170,13 +171,13 @@ public class AccountManagement {
 				String phoneNumber = sc.nextLine();
 				System.out.println("거래처의 주소를 입력해주세요.>");
 				String address = sc.nextLine();
-				AccountInfo Info = null;
-				info = new AccountInfo(newName, manager, phoneNumber, address);
+				SellerInfo Info = null;
+				info = new SellerInfo(newName, manager, phoneNumber, address);
 				InfoBooks.remove(index);
 				InfoBooks.add(index, info);
-				System.out.println("*******************************************************************************************");
+				MainMenu.seperator();
 				System.out.println("                                 해당 거래처의 정보가 수정되었습니다!                      ");
-				System.out.println("*******************************************************************************************");
+				MainMenu.seperator();
 				break;
 			}
 

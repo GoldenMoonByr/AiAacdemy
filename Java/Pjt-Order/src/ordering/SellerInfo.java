@@ -4,26 +4,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class AccountInfo extends ItemManagement {
+public class SellerInfo {
 
 //필드
-	Scanner sc;
+
 	private String accountName;
 	private String accountPhoneNumber;
 	private String accountManager;
 	private String accountAddr;
+	ItemManagement itemManager = new ItemManagement();
 
 //생성자
-	AccountInfo() {
+	SellerInfo() {
 
 	}
 
-	AccountInfo(String accountName, String accountPhoneNumber, String accountManager, String accountAddr) {
+	SellerInfo(String accountName, String accountPhoneNumber, String accountManager, String accountAddr) {
 		this.accountName = accountName;
 		this.accountPhoneNumber = accountPhoneNumber;
 		this.accountManager = accountManager;
 		this.accountAddr = accountAddr;
-		sc = new Scanner(System.in);
+
 	}
 
 	// 게터 , 세터
@@ -69,7 +70,6 @@ public class AccountInfo extends ItemManagement {
 
 	}
 
-	
 	boolean checkAccountName(String name) {
 		boolean result = false;
 		if (this.accountName.equals(name)) {

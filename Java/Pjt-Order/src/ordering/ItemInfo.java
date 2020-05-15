@@ -1,6 +1,6 @@
 package ordering;
 
-public class Item {
+public class ItemInfo {
 	private String bigCategory;
 	private String mediCategory;
 	private String name;
@@ -8,7 +8,7 @@ public class Item {
 	private int count;
 	
 	
-	Item(String bigCategory,String mediCategory,String name,int price,int count){
+	ItemInfo(String bigCategory,String mediCategory,String name,int price,int count){
 		this.bigCategory = bigCategory;
 		this.mediCategory = mediCategory;
 		this.name= name;
@@ -16,7 +16,7 @@ public class Item {
 		this.count = count;
 	}
 	
-	public Item() {
+	public ItemInfo() {
 		// TODO Auto-generated constructor stub
 	}
 

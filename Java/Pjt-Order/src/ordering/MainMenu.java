@@ -2,6 +2,8 @@ package ordering;
 
 public class MainMenu {
 	
+	
+	
 	static void menuList(){
 		
 	System.out.println("    [++++++++++              거래처 및 발주 관리 시스템                     +++++++++]");
@@ -19,7 +21,18 @@ public class MainMenu {
 	System.out.println("    [++++++++++++++++++++++++++++++++++++++++++++++++++++]");
 
 	}
+	
+	static void seperator() {
+		System.out.println( "*************************************************************************");
+	}
+	
+	static void seperator2() {
+	System.out.println(
+			"****************************************************************************************************************");
+	}
+	
 }
+
 
 
 

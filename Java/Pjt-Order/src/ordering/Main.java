@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main implements MenuNumInterface {
+	
 
+	
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		AccountManagement manager = new AccountManagement();
+		
+		ExceptionClass exception = new ExceptionClass();
+		SellerManagement manager = new SellerManagement();
 		OrderSystem order = new OrderSystem();
-		AccountInfo account = null;
+		SellerInfo account = null;
 
 		int key2 = 0;
 		int num = 0;
@@ -18,38 +21,38 @@ public class Main implements MenuNumInterface {
 		while (true) {
 			MainMenu.menuList();
 			try {
-				key = sc.nextInt();
+				key = exception.sc.nextInt();
 
 			} catch (Exception e) {
 
-				System.out.println("*************************************************************************");
+				MainMenu.seperator();
 				System.out.println("                    잘못된 입력입니다! 확인 후 다시 입력해주세요.                     ");
-				System.out.println("*************************************************************************");
+				MainMenu.seperator();
 				continue;
 			}finally {
-				sc.nextLine();
+				exception.sc.nextLine();
 			}
 			switch (key) {
 			case A_SELECT:
-				account = manager.accountSelect();
+				account = manager.selectAccount();
 				if (account == null) {
-					System.out.println("*************************************************************************");
+					MainMenu.seperator();
 					System.out.println("                          찾으시는 거래처 정보가 없습니다.");
-					System.out.println("*************************************************************************");
+					MainMenu.seperator();
 					break;
 				}else {}
 
 				while (true) {
 					try {
 						System.out.println("[1] 상품 전체 출력  [2] 상품 추가  [3] 상품 삭제  [4] 상품 수정  [5] 이전 단계로 나가기");
-						key2 = sc.nextInt();
+						key2 = exception.sc.nextInt();
 					} catch (Exception e) {
-						System.out.println("*************************************************************************");
+						MainMenu.seperator();
 						System.out.println("                  잘못된 입력입니다! 확인 후 다시 입력해주세요.                     ");
-						System.out.println("*************************************************************************");
+						MainMenu.seperator();
 						continue;
 					} finally {
-						sc.nextLine();
+						exception.sc.nextLine();
 					}
 
 					if (key2 == I_EXIT)
@@ -60,13 +63,13 @@ public class Main implements MenuNumInterface {
 						order.orderItem(account);
 						break;
 					case I_ADD:
-						account.addItem();
+						account.itemManager.addItem();
 						break;
 					case I_DELETE:
-						account.deleteItem();
+						account.itemManager.deleteItem();
 						break;
 					case I_EDIT:
-						account.editItem();
+						account.itemManager.editItem();
 						break;
 					default :
 						System.out.println("각 기능에 맞는 번호를 선택해주세요.");
@@ -82,7 +85,7 @@ public class Main implements MenuNumInterface {
 				manager.searchAccountInfor();
 				break;
 			case A_EDIT:
-				manager.accountInfoEdit();
+				manager.editAccountInfo();
 				break;
 			case A_DELETE:
 				manager.deleteAccountInfor();
@@ -94,9 +97,9 @@ public class Main implements MenuNumInterface {
 				order.showOrderList();
 				break;
 			case A_EXITPROGRAMM:
-				System.out.println("*******************************************************************************************");
+				MainMenu.seperator();
 				System.out.println("                     시스템을 종료합니다. 이용해주셔서 감사합니다^^                               ");
-				System.out.println("*******************************************************************************************");
+				MainMenu.seperator();
 				return;
 			default :
 				System.out.println("각 기능에 맞는 번호를 선택해주세요.");
