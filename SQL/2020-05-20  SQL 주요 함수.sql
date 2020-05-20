@@ -19,6 +19,7 @@ select sysdate from dual;
 --TO_CHAR
 --date -> varchar2
 select sysdate, to_char(sysdate,'YYYY-MM-dd') from dual;
+select sysdate, to_char(sysdate,'YYYY.MM.dd.dy  HH24:MI:SS') from dual;
 select hiredate as hiredate from emp;
 select ename, to_char(hiredate,'YYYY.MM.DD') as hiredate from emp;
 --요일도 가능
@@ -78,7 +79,7 @@ select empno, ename, job, sal, decode(job,
 'CLERK',sal*1.20) as upsal from emp order by upsal desc;
 
 
---case - edn 함수 
+--case when - end 함수 
 --java의 if else 구문과 비슷
 select ename, deptno,
 case when deptno=10 then 'ACCOUNTING'
