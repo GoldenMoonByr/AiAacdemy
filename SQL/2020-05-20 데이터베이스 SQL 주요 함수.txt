@@ -1,0 +1,119 @@
+﻿2020-05-20
+DUAL 테이블과 SQL 함수 분류
+DUAL 테이블
+DESC DUAL 
+함수를 학습, 테스트 하는 용도, DUMMY라는 단 하나의 컬럼으로 구성되어 있습니다.
+이 컬럼의 최대 길이는 1입니다.
+ex) select abs(-100) from dual;
+DUMMY 컬럼에는 X라는 단 하나의 로우만을 저장하고 있고, 수행의 결과를 출력하기 위한
+단 하나의 로우라고 생각하면 된다.
+
+
+SQL 함수
+
+단일행 함수
+절대값, round 등 컬럼(row)값이 함수 실행의 대상이 되고, 처리된 값이 새로운 컬럼을 만듦.
+
+복수행 함수
+집합 데이터 개념. 합 , 개수 , 평균 등
+전체 행을 대상을 처리하는 함수
+
+단일 행 함수 종류
+문자 함수 -JAVA 에서의 String Class
+숫자 함수 -JAVA 에서의 Math Class
+날짜 함수 - 날짜 연산
+변환 함수(중요) - 문자 -> 날짜 , 문자 -> 숫자,  날짜 -> 문자 , 숫자 -> 문자
+
+숫자 함수 종류
+ABS , COS EXP(제곱), FLOOR(소수점 아래 잘래낸다.) , LOG, POWER(n승 반환),
+SIGH(n) n<0이면 -1 , n>0이면 1을 반환.  ,TAN ,  ROUND(특정 자리수에서 반올림)
+TRUNC(특정 자리수에서 잘라냄) MOD(입력 수를 나눈 나머지 값을 반환.
+
+문자 처리 함수
+LOWER , UPPER , INICAP , CONCAT(문자의 값을 여결) , SUBSTR , SUBSTRB  , LENGTH , LENGTHB
+LPAD , RAAD ,TRIM, CONVERT , CHR , ASCii, REPLACE
+
+날짜 함수
+sysdate, months_between , add_months, next_day, last_day, round , trunc
+
+형 변환 함수
+to_char , to_date , to_number
+형식 예 : to_char(날짜 데이터 , 출력형식)
+
+to_char 함수  - 날짜형을 문자형으로 변환
+Date 형태의 데이터를 지정한 양식에 의해 VARCHAR2 형의 문자로 변환합니다.
+종류
+날짜 출력 형식
+YYYY 년도 표현 (4자리)
+YY 년도 표현(2자리)
+MM (월을 숫자로 표현)
+MON(월을 알파벳으로 표현)
+DAY(요일 표현)
+DY(요일을 약어로 표현)
+시간 출력 형식
+AM 또는 PM (오전, 오후 시각 표시)
+A.M 또는 P.M (오전, 오후 시각 표시)
+HH또는 HH12 (시간 1~12)
+HH24 (24시간으로 표현 0~23)
+MI (분 표현)
+SS (초 표현)
+숫자 출력 형식
+0 (자릿수를 나타내며 자릿수가 맞지 않을 경우 0으로 채운다.)
+9 (자릿수를 나타내며 자릿수가 맞지 않아도 채우지 않는다.)
+L (각 지역별 통화 기호를 앞에 표시한다.)
+.  (소수점)
+,  (천 단이 자리 구분)
+
+사용 예)  select sysdate,to_char(sysdate , 'yyyy-mm-dd') form dual;
+            select sysdate, to_char(sysdate,'YYYY.MM.dd.dy  HH24:MI:SS') from dual;
+	select ename,sal,to_char(sal,'L999,999') from emp;
+
+문자형을 날짜형으로 변환하는 to_date 함수
+날짜 형으로 변환하기에 앞서 날짜 형에 대해서 살표보도록 하자. 세기,년도,월,일. 시간,분.초와 같이
+날짜와 시간에 대한 정보를 저장한다.
+오라클의 기본 날짜 형식 : YY/MM/DD 형식.
+사용 예)  select ename,hiredate from emp where hiredate = to_date(19810220, 'YYYYMMDD')
+
+특정 데이터를 숫자 형으로 변환하는 to_number 함수
+산수연산 또는 관계연산을 목적으로 변환
+사용 예) select to_number('20,000','99,999') - to_number('10,000','99,999') from dual;
+
+조건 , 선택을 위한 decode 함수
+Jave의 switch - case 문과 같은 기능을 가졌다.
+여러 가지의 경우에 대해서 선택할  수 있음.
+사용 예)  select ename, deptno,decode(deptno,
+10,'ACCOUNTING',
+20,'RESEARCH',
+30,'SALES',
+40,OPERATIONS) as NAME from emp;
+
+	select empno, ename, job, sal, decode(job,
+'ANALYST',sal*1.05,
+'SALESMAN',sal*1.10,
+'MANAGER',sal*1.15,
+'CLERK',sal*1.20) as upsal from emp order by upsal desc;
+
+
+또, 여러가지 조건에 따른 서로 다른 차리가 가능한 case when-end 함수
+decode 함수와의 차이점 ? decode 함수는 조건이 일치하는 경우에 대해서만 적용.
+그러나 case when-end 함수는 다양한 비교 연산자를 이용하여 조건을 제시할 수 있다.(범위도 적용 가능)
+그러니까 쉽게 말하자면 swith 문과 if - else 문의 차이라고 생각하면 됨.
+
+사용 예) 
+	select ename, deptno,
+case when deptno=10 then 'ACCOUNTING'
+when deptno=20 then 'RESEARCH'
+when deptno=30 then 'SALES'
+when deptno=40 then 'OPERATIONS'
+End as dname from emp;
+
+	select empno, ename, job, sal,
+case when job = 'ANALYST' then sal*1.05
+when job = 'SALESMAN' then sal*1.10
+when job = 'MANAGER' then sal*1.15
+when job = 'CLERK' then sal*1.20
+end as upsal from emp order by upsal desc;
+
+
+
+
