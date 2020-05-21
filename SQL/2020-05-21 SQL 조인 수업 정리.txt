@@ -1,0 +1,98 @@
+﻿2020-05-21
+06. 조인
+스키마와 스키마를 붙인다.
+특정 부서 번호에 대한 부서이름은 무엇인지는 부서(DEPT) 테이블에 있다.
+특정 사원에 대한 부서명을 알아내기 위해서는 부서 테이블에서 정보를 얻어 와야 한다.
+디코드를 사용 하던지, 여러 번의 질의를 통해서 얻어 올 수 있다.
+그러나 join을 통해 각 테이블의 스키마를 붙여주면 해결할 수 있다.
+Cross Join
+컬럼의 수는 사원 테이블의 컬럼의 수 (8)와 부서 테이블의 컬럼의 수를 더한 것으로 8이 된다.
+로우 수는 사원 한명에 대해서 dept 테이블의 4개의 로우가 결합되기에 (56개) (14*4)가 됩니다.
+사용 예) select * from dept, emp;
+
+Equi Join -> 동일 칼럼을 기준으로 조인합니다. (가장 많이 쓰임, 외래키와의 유사성)
+Non-Equi Join -> 동일 칼럼이 없이 다른 조건을 사용하며 조인합니다. (ex, salgrade)
+비교 할 값에 null 값이 나오는 경우,
+Outer Join 조인 조건에 만족하지 않는 행도 나타낸다.
+Self Join 한 테이블 내에서 조인한다.
+
+EQUI JOIN
+EQUI JOIN은 가장 많이 사용하는 조인 방법으로 조인 대상이 되는 두 테이블에서 공통적으로 존재하는 컬럼의
+값이 일치되는 행을 연결하여 결과를 생성하는 조인 방법이다.
+사용 예)
+select * from emp,dept where emp.deptno = dept.deptno;
+
+EQUI JOIN 에서 AND 연산 사용하기.
+select * from orders o, book b, customer c
+where o.bookid = b.bookid and o.custid = c.custid
+and c.name = '박지성'
+;
+
+컬럼명의 모호성 해결
+두 테이블에 동일한 이름의 칼럼을 사용하면 어느 테이블 소속인지 불분명함.
+이러한 방법을 해결하기 위해 컬럼 명 앞에 테이블 명을 명시적으로 기술하거나 , 별칭을 사용한다.
+사용 예) 
+1. 테이블 명 명시적 기술
+select emp.ename, dept.deptno, emp.deptno
+2. 별칭 부여
+select e.deptno , d.deptno
+from emp e , dept d
+where e.deptno = d.deptno
+and e.ename = 'scott';
+
+
+Non-Equi Join
+사용 예)
+select ename, sal, grade from emp, salgrade
+where sal between losal and hisal;
+
+select ename , sal ,grade from  emp e, salgrade s
+where e.sal >= s.losal and e.sal <= s.hisal;
+
+Self Join
+자기 자신과 조인을 맺는 것
+사용 예)
+select e.ename||'의 상사는' ||m.ename ||'입니다.' 
+from emp e , emp m
+where e.mgr = m.empno
+order by e.empno;
+
+Outer Join
+Self Join에서 봤듯이 king의 mgr 값은 null 이므로 자동적으로 배제 되어진 것을 확인할 수 있다.
+그러나 king도 회사의 일원이므로 null 값이더라도 직원 목록에 추가하고 싶다면,
+null에 해당한 칼럼 이름 뒤에 덧붙이면 된다.
+사용 예)
+select e.ename||'의 상사는' ||m.ename ||'입니다.' 
+from emp e , emp m
+where e.mgr = m.empno(+)
+order by e.empno
+;
+
+select e.ename , e.empno, e.sal, nvl (e.comm,0),nvl( m.ename,'관리자 없음')
+from emp e, emp m
+where e.mgr = m.empno(+)
+;
+
+ANSI Join
+데이터베이스 프로그램을 불문하고 모두 공통적으로 쓰이는 SQL 구문
+
+CROSS join
+select * from emp cross join dept
+
+EQUI join
+select ename, dname from emp e Inner join dept d
+on e.deptno = d.deptno;
+USING 사용!
+select ename, dname from emp inner join dept
+using(deptno);
+
+NATURAL join
+using 사용 보다 더 쉽게! 
+사용 예 )
+select * from dept natural join emp; 
+라고 하면 자동으로 중복되는 형식을 찾아 없애주고 해당 결과를 화면에 출력한다.
+
+
+
+
+
