@@ -1,0 +1,68 @@
+﻿2020-05-29
+JDBC
+자바애플리케이션에서 표준화된 데이터베이스 접근 제공
+각 데이터베이스 접속에 대한 상세한 정보를 알 필요 없음
+이론적으로는 개발된 애플리케이션에서 DB 변경 시 JDBC 드라이버만 교체하면 됨
+
+데이터베이스가 무엇인지 상관없이 동일한 개발이 가능함
+각 데이터베이스 프로그램에 맞는 드라이버 클라스만 등록해주면 된다.
+
+C:\app\a4-01\product\11.2.0\dbhome_1\jdbc\lib\ojdbc6.jar
+오라클 데이터베이스를 사용하기 위한 라이브러리 파일
+
+자바프로그램에서 데이터베이스를 이용하는 단계
+JDBC 드라이버 로드 -> DB 연결 -> 데이터를 읽거나 씀(DML) -> 연결을 끊어준다.
+
+1.
+JDBC 드라이버 로드 - class.forName()
+
+2.
+데이터 베이스 연결 - DriveManager.gerConnetion(URL,USER,PW)
+                        - java.sql.connection  => commit, rollback가능 즉 한 번 연결하면 transaction 처리 가능
+
+3.
+Statement 생성    SQL 실행 시키는 메서드
+		- java.sql.Statement                         
+		-java.sql.preparedStatement
+4.
+SQL 전송 - java.sql.Statement -> 1. executeQuery() : select문 처리 2.executeUpdate : DML 처리
+
+5.
+결과  - java.sql.ResultSet : 결과를 행단위로 뽑아서 쓸 수 있도록 지원해주는 메소드
+
+6.
+연결 종로 - java.sql.connection -> close()
+
+
+
+JDBC 드라이버의 로드
+JDBC 드라이버를 로드하는 방법
+Class.forName("oracle.jdbc.driver.OracleDriver")'
+
+Calss.forName("com.mysql.jdbc.Drver");
+
+Connection conn = DriverManager.getConnetion(JDBC_url,"아이디","비밀번호");
+여기서 URL의 예
+
+JDBC: oracle:thin : @IP주소 : 1521: orcl
+
+JDBC: mysql : // IP 주소 : 3306: sid
+
+
+데이터 조회
+테이블의 데이터를 읽어오는 방법
+select * from emp;
+Statement stmt = con..createStatement();
+stmt.excutequery("select * from emp");
+
+preparedstatesment
+
+String sql = "insert into test valuses(?,?)";
+PreparedStatement pstmt = conn.prepareStatement(sql);
+pstmt.setString(1,"SCOTT");
+pstmt.setString(2,"scott@test.com");
+pstmt.executeUpdate();
+
+
+
+
